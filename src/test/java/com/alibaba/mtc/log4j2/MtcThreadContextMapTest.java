@@ -35,6 +35,7 @@ public class MtcThreadContextMapTest {
         logger.info("Log in main!");
         executorService.submit(createTask()).get();
 
+        logger.info("Exit main");
         executorService.shutdown();
     }
 
@@ -43,6 +44,7 @@ public class MtcThreadContextMapTest {
             @Override
             public void run() {
                 // Log in thread pool
+                ThreadContext.put("task" , "" + System.currentTimeMillis());
                 logger.info("Log in Runnable!");
             }
         };

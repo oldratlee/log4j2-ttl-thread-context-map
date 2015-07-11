@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.logging.log4j.ThreadContext;
 import org.apache.logging.log4j.spi.DefaultThreadContextMap;
 import org.apache.logging.log4j.spi.ThreadContextMap;
 
@@ -18,29 +17,7 @@ public class MtcThreadContextMap implements ThreadContextMap {
     private final ThreadLocal<Map<String, String>> localMap;
 
     public MtcThreadContextMap() {
-        this.localMap = createThreadLocalMap();
-    }
-
-    static ThreadLocal<Map<String, String>> createThreadLocalMap() {
-        return new MtContextThreadLocal<Map<String, String>>() {
-            @Override
-            protected void beforeExecute() {
-                final Map<String, String> log4j2Context = get();
-                for (Map.Entry<String, String> entry : log4j2Context.entrySet()) {
-                    ThreadContext.put(entry.getKey(), entry.getValue());
-                }
-            }
-
-            @Override
-            protected void afterExecute() {
-                ThreadContext.clearAll();
-            }
-
-            @Override
-            protected Map<String, String> initialValue() {
-                return new HashMap<String, String>();
-            }
-        };
+        this.localMap = new MtContextThreadLocal<Map<String, String>>();
     }
 
     @Override
@@ -107,7 +84,6 @@ public class MtcThreadContextMap implements ThreadContextMap {
         int result = 1;
         final Map<String, String> map = this.localMap.get();
         result = prime * result + ((map == null) ? 0 : map.hashCode());
-        result = prime * result;
         return result;
     }
 
