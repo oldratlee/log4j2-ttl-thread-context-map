@@ -22,8 +22,8 @@ Dependency
 <dependency>
     <groupId>com.alibaba</groupId>
     <artifactId>log4j2-mtc-thread-context-map</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
-Find most new version at [search.maven.org](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.alibaba%22%20AND%20a%3A%22log4j2-mtc-thread-context-map%22).
+Find available versions at [search.maven.org](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.alibaba%22%20AND%20a%3A%22log4j2-mtc-thread-context-map%22).
