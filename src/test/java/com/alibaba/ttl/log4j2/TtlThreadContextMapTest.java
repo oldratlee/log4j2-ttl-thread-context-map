@@ -1,6 +1,6 @@
-package com.alibaba.mtc.log4j2;
+package com.alibaba.ttl.log4j2;
 
-import com.alibaba.mtc.MtContextRunnable;
+import com.alibaba.ttl.TtlRunnable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.ThreadContext;
@@ -12,8 +12,8 @@ import java.util.concurrent.Executors;
 /**
  * @author Jerry Lee (oldratlee at gmail dot com)
  */
-public class MtcThreadContextMapTest {
-    static Logger logger = LogManager.getLogger(MtcThreadContextMapTest.class);
+public class TtlThreadContextMapTest {
+    static Logger logger = LogManager.getLogger(TtlThreadContextMapTest.class);
 
     @Test
     public void testName() throws Exception {
@@ -25,7 +25,7 @@ public class MtcThreadContextMapTest {
         // Run task in thread pool
         executorService.submit(createTask()).get();
 
-        // Init Log Context, set MTC
+        // Init Log Context, set TTL
         // More KV if needed
         final String TRACE_ID = "trace-id";
         final String TRACE_ID_VALUE = "XXX-YYY-ZZZ";
@@ -48,6 +48,6 @@ public class MtcThreadContextMapTest {
                 logger.info("Log in Runnable!");
             }
         };
-        return MtContextRunnable.get(task);
+        return TtlRunnable.get(task);
     }
 }

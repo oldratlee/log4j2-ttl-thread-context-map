@@ -1,6 +1,6 @@
-package com.alibaba.mtc.log4j2;
+package com.alibaba.ttl.log4j2;
 
-import com.alibaba.mtc.MtContextThreadLocal;
+import com.alibaba.ttl.TransmittableThreadLocal;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -13,11 +13,11 @@ import org.apache.logging.log4j.spi.ThreadContextMap;
  * @author Jerry Lee (oldratlee at gmail dot com)
  * @see DefaultThreadContextMap
  */
-public class MtcThreadContextMap implements ThreadContextMap {
+public class TtlThreadContextMap implements ThreadContextMap {
     private final ThreadLocal<Map<String, String>> localMap;
 
-    public MtcThreadContextMap() {
-        this.localMap = new MtContextThreadLocal<Map<String, String>>();
+    public TtlThreadContextMap() {
+        this.localMap = new TransmittableThreadLocal<Map<String, String>>();
     }
 
     @Override

@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.alibaba</groupId>
-	<artifactId>log4j2-mtc-thread-context-map</artifactId>
+	<artifactId>log4j2-ttl-thread-context-map</artifactId>
 	<version>1.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>MTC Thread Context Map for Log4j2</name>
-	<description>MTC Thread Context Map for Log4j2</description>
-	<url>https://github.com/oldratlee/log4j2-mtc-thread-context-map</url>
+	<name>TTL Thread Context Map for Log4j2</name>
+	<description>TTL Thread Context Map for Log4j2</description>
+	<url>https://github.com/oldratlee/log4j2-ttl-thread-context-map</url>
 	<inceptionYear>2015</inceptionYear>
 
 	<licenses>
@@ -20,12 +20,12 @@
 		</license>
 	</licenses>
 	<scm>
-		<connection>scm:git:git@github.com:oldratlee/log4j2-mtc-thread-context-map.git</connection>
-		<developerConnection>scm:git:git@github.com:oldratlee/log4j2-mtc-thread-context-map.git</developerConnection>
-		<url>git@github.com:oldratlee/log4j2-mtc-thread-context-map.git</url>
+		<connection>scm:git:git@github.com:oldratlee/log4j2-ttl-thread-context-map.git</connection>
+		<developerConnection>scm:git:git@github.com:oldratlee/log4j2-ttl-thread-context-map.git</developerConnection>
+		<url>git@github.com:oldratlee/log4j2-ttl-thread-context-map.git</url>
 	</scm>
 	<issueManagement>
-		<url>https://github.com/oldratlee/log4j2-mtc-thread-context-map/issues</url>
+		<url>https://github.com/oldratlee/log4j2-ttl-thread-context-map/issues</url>
 		<system>GitHub Issues</system>
 	</issueManagement>
 	<organization>
@@ -60,8 +60,8 @@
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
-			<artifactId>multithread.context</artifactId>
-			<version>1.2.0</version>
+			<artifactId>transmittable-thread-local</artifactId>
+			<version>2.0.0</version>
 		</dependency>
 		<!-- Testing libs -->
 		<dependency>
