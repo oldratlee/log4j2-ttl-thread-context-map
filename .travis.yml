@@ -9,6 +9,17 @@ language: java
 
 jdk:
   - oraclejdk8
+env:
+  # log4j2 Changelog
+  # https://logging.apache.org/log4j/2.x/changelog.html
+  - dummy=dummy
+  - LOG4J2_VERSION=2.10.0
+  - LOG4J2_VERSION=2.9.0
+  - LOG4J2_VERSION=2.8
+  - LOG4J2_VERSION=2.7
+  - LOG4J2_VERSION=2.6
+  - LOG4J2_VERSION=2.5
+  - LOG4J2_VERSION=2.4
 
 before_install:
   # workaroud for "buffer overflow detected" problem of openjdk:
@@ -35,31 +46,33 @@ install:
 
 script:
   # default oracle jdk 8, do build and test
-  - ./mvnw clean install --batch-mode -V
+  - ./mvnw dependency:tree
+  - ./mvnw -V clean install --batch-mode ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION}
   # open jdk 7
   - jdk_switcher use openjdk7
-  - ./mvnw clean install --batch-mode -V
+  - ./mvnw -V clean install --batch-mode ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION}
   # open jdk 8
   - jdk_switcher use openjdk8
-  - ./mvnw clean install --batch-mode -V
+  - ./mvnw -V clean install --batch-mode ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION}
   # oracle jdk 9
   - jdk_switcher use oraclejdk9
-  - ./mvnw clean install --batch-mode -V
+  - ./mvnw -V clean install --batch-mode ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION}
   # open jdk 9
   - export JAVA_HOME=$HOME/.jdk/openjdk9
   - if [ ! -d "$JAVA_HOME" ]; then ./install-jdk.sh --feature 9 --os linux-x64 --license GPL --target $JAVA_HOME; fi
-  - ./mvnw clean install --batch-mode -V
+  - ./mvnw -V clean install --batch-mode ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION}
   #  oracle jdk 10
   - export JAVA_HOME=$HOME/.jdk/oraclejdk10
   - if [ ! -d "$JAVA_HOME" ]; then ./install-jdk.sh --feature 10 --os linux-x64 --license BCL --target $JAVA_HOME; fi
-  - ./mvnw clean install --batch-mode -V
+  - ./mvnw -V clean install --batch-mode ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION}
   #  open jdk 10
   - export JAVA_HOME=$HOME/.jdk/openjdk10
   - if [ ! -d "$JAVA_HOME" ]; then ./install-jdk.sh --feature 10 --os linux-x64 --license GPL --target $JAVA_HOME; fi
-  - ./mvnw clean install --batch-mode -V
+  - ./mvnw -V clean install --batch-mode ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION}
   # codecov
   - jdk_switcher use oraclejdk8
-  - mvn cobertura:cobertura -V
+  - mvn clean
+  - mvn -V cobertura:cobertura ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION}
 
 after_success:
   - codecov
