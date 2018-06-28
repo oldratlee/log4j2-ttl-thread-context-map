@@ -1,9 +1,10 @@
 TTL ThreadContextMap For Log4j2 
 ===================================
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.alibaba/log4j2-ttl-thread-context-map/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.alibaba/log4j2-ttl-thread-context-map/)
+[![Build Status](https://travis-ci.org/oldratlee/log4j2-ttl-thread-context-map.svg?branch=master)](https://travis-ci.org/oldratlee/log4j2-ttl-thread-context-map)
+[![Coverage Status](https://img.shields.io/codecov/c/github/oldratlee/log4j2-ttl-thread-context-map/master.svg)](https://codecov.io/gh/oldratlee/log4j2-ttl-thread-context-map/branch/master)
+[![Maven Central](https://img.shields.io/maven-central/v/com.alibaba/log4j2-ttl-thread-context-map.svg)](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.alibaba%22%20AND%20a%3A%22log4j2-ttl-thread-context-map%22)
 [![GitHub release](https://img.shields.io/github/release/oldratlee/log4j2-ttl-thread-context-map.svg)](https://github.com/oldratlee/log4j2-ttl-thread-context-map/releases)
-[![Dependency Status](https://www.versioneye.com/user/projects/5796ba8e4fe9180028717750/badge.svg)](https://www.versioneye.com/user/projects/5796ba8e4fe9180028717750)  
 [![GitHub issues](https://img.shields.io/github/issues/oldratlee/log4j2-ttl-thread-context-map.svg)](https://github.com/oldratlee/log4j2-ttl-thread-context-map/issues)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
