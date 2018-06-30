@@ -25,7 +25,7 @@ Dependency
 <dependency>
     <groupId>com.alibaba</groupId>
     <artifactId>log4j2-ttl-thread-context-map</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
