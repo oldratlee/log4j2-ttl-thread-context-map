@@ -45,8 +45,9 @@ install:
   - pip install --user codecov
 
 script:
+  # Check build log4j2 version via dependency tree
+  - ./mvnw dependency:tree ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION}
   # default oracle jdk 8, do build and test
-  - ./mvnw dependency:tree
   - ./mvnw -V clean install --batch-mode ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION}
   # open jdk 7
   - jdk_switcher use openjdk7
