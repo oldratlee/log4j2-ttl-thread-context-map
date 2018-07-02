@@ -45,10 +45,15 @@ Run [Demo Code](src/test/java/com/alibaba/ttl/log4j2/Demo.java):
 # 🍪 Dependency
 
 ```xml
+<!--
+    log4j2 runtime extension is SPI implementation,
+    it will never be used by biz code, so set scope to runtime. 
+-->
 <dependency>
     <groupId>com.alibaba</groupId>
     <artifactId>log4j2-ttl-thread-context-map</artifactId>
     <version>1.2.0</version>
+    <scope>runtime</scope> 
 </dependency>
 ```
 
