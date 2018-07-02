@@ -53,7 +53,7 @@ Run [Demo Code](src/test/java/com/alibaba/ttl/log4j2/Demo.java):
     <groupId>com.alibaba</groupId>
     <artifactId>log4j2-ttl-thread-context-map</artifactId>
     <version>1.2.0</version>
-    <scope>runtime</scope> 
+    <scope>runtime</scope>
 </dependency>
 ```
 
