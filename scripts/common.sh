@@ -102,27 +102,25 @@ isLog4j2NotSupportedByJdk() {
 #################################################################################
 
 mvnClean() {
-    runCmd "${MVN_CMD[@]}" clean || fatal "fail to mvn clean!"
+    runCmd ./mvnw clean || fatal "fail to mvn clean!"
 }
 
 mvnBuildJar() {
-    runCmd "${MVN_CMD[@]}" install -Dmaven.test.skip || fatal "fail to build jar!"
+    # ! build jar do not modify the pom(log4j2 verion) by ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION}
+    runCmd ./mvnw install -Dmaven.test.skip || fatal "fail to build jar!"
 }
 
 mvnCompileTest() {
-    runCmd "${MVN_CMD[@]}" test-compile || fatal "fail to mvn test-compile!"
+    runCmd ./mvnw test-compile || fatal "fail to mvn test-compile!"
 }
-
-readonly dependencies_dir="target/dependency"
 
 mvnCopyDependencies() {
     runCmd "${MVN_CMD[@]}" dependency:copy-dependencies -DincludeScope=test || fatal "fail to mvn copy-dependencies!"
-
-    # remove repackaged and shaded javassist lib
-    rm $dependencies_dir/javassist-*
 }
 
 getClasspathOfDependencies() {
+    local -r dependencies_dir="target/dependency"
+
     [ -e "$dependencies_dir" ] || mvnCopyDependencies 1>&2
 
     echo $dependencies_dir/*.jar | tr ' ' :
