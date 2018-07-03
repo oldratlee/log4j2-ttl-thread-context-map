@@ -3,7 +3,7 @@
 cd "$(dirname "$(readlink -f "$0")")"
 source ./common.sh
 
-junit_test_case() {
+junit_test_cases() {
     (
         cd target/test-classes &&
         find . -iname '*Test.class' | sed '
@@ -19,5 +19,8 @@ if isLog4j2NotSupportedByJdk; then
     exit
 fi
 
-runCmd "${JAVA_CMD[@]}" -cp "$(getClasspath)" \
-    org.junit.runner.JUnitCore $(junit_test_case)
+class_path="$(getClasspath)"
+for test_case in $(junit_test_cases); do
+    runCmd "${JAVA_CMD[@]}" -cp "$class_path" \
+        org.junit.runner.JUnitCore $test_case
+done
