@@ -1,16 +1,16 @@
 package com.alibaba.ttl.log4j2;
 
 import com.alibaba.ttl.TtlRunnable;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.ThreadContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Demo {
-    private static Logger logger = LogManager.getLogger(Demo.class);
+public class Slf4jMdcDemo {
+    private static final Logger logger = LoggerFactory.getLogger(Slf4jMdcDemo.class);
 
     public static void main(String[] args) throws Exception {
         // Log in Main Thread
@@ -25,7 +25,7 @@ public class Demo {
         // More KV if needed
         final String TRACE_ID = "trace-id";
         final String TRACE_ID_VALUE = "XXX-YYY-ZZZ";
-        ThreadContext.put(TRACE_ID, TRACE_ID_VALUE);
+        MDC.put(TRACE_ID, TRACE_ID_VALUE);
 
         // Log in Main Thread
         logger.info("Log in main!");
@@ -42,7 +42,7 @@ public class Demo {
             @Override
             public void run() {
                 // Log in thread pool
-                ThreadContext.put("task", new Date().toString());
+                MDC.put("task", new Date().toString());
                 logger.info("Log in Runnable!");
             }
         };

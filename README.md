@@ -38,10 +38,15 @@ Just add this dependency into your project to activate the Log4j2 TTL ThreadCont
 
 # 🏃 Run Demo
 
-Run [Demo Code](src/test/java/com/alibaba/ttl/log4j2/Demo.java):
+Run Demo Code
+
+- [Log4j2Demo.java](src/test/java/com/alibaba/ttl/log4j2/Log4j2Demo.java):
+- [Slf4jMdcDemo.java](src/test/java/com/alibaba/ttl/log4j2/Slf4jMdcDemo.java):
 
 ```bash
-./mvnw clean test-compile -Dexec.classpathScope=test -Dexec.mainClass=com.alibaba.ttl.log4j2.Demo exec:java
+./mvnw clean test-compile -Dexec.classpathScope=test -Dexec.mainClass=com.alibaba.ttl.log4j2.Log4j2Demo exec:java
+
+./mvnw clean test-compile -Dexec.classpathScope=test -Dexec.mainClass=com.alibaba.ttl.log4j2.Slf4jMdcDemo exec:java
 ```
 
 # 🍪 Dependency
