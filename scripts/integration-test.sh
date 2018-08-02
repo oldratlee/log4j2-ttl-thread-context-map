@@ -1,4 +1,5 @@
 #!/bin/bash
+
 cd "$(dirname "$(readlink -f "$0")")"
 source ./common.sh skipClean
 
@@ -14,7 +15,7 @@ if [ -n "$JAVA8_HOME" ]; then
     export JAVA_HOME="${JAVA8_HOME}"
 else
     current_java_version=$(./mvn -v | awk -F'[ ,]' '/^Java version/{print $3}')
-    if [[ default_java_version != "1.8."* ]]; then
+    if [[ current_java_version != 1.8.* ]]; then
         echo "Fail to get java 8 home!"
         exit 1
     fi

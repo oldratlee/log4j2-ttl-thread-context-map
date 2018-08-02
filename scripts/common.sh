@@ -2,6 +2,7 @@
 
 set -o pipefail
 set -e
+
 # https://stackoverflow.com/questions/64786/error-handling-in-bash
 error() {
     local parent_lineno="$1"
@@ -46,8 +47,8 @@ runCmd() {
     "$@"
 }
 
-fatal() {
-    redEcho "$@" 1>&2
+die() {
+    redEcho "Error: $@" 1>&2
     exit 1
 }
 
@@ -58,20 +59,23 @@ headInfo() {
     echo
 }
 
-################################################################################
-# auto adjust pwd to project dir, and set project to BASE var
-################################################################################
+#################################################################################
+# auto adjust pwd to project root dir, and set PROJECT_ROOT_DIR var
+#################################################################################
+adjustPwdToProjectRootDir() {
+    while true; do
+        [ / = "$PWD" ] && die "fail to detect project directory!"
 
-while true; do
-    [ -f pom.xml ] && {
-        readonly BASE="$PWD"
-        yellowEcho "Find project base dir: $PWD"
-        break
-    }
-    [ / = "PWD" ] &&  fatal "fail to detect project directory!"
+        [ -f pom.xml ] && {
+            readonly PROJECT_ROOT_DIR="$PWD"
+            yellowEcho "Find project root dir: $PWD"
+            break
+        }
+        cd ..
+    done
+}
 
-    cd ..
-done
+adjustPwdToProjectRootDir
 
 #################################################################################
 # project common info
@@ -84,7 +88,6 @@ readonly -a JAVA_CMD=( "$JAVA_HOME/bin/java" -Xmx128m -Xms128m -ea -Duser.langua
 readonly -a JAVA_DEBUG_OPTS=( -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 )
 
 readonly -a MVN_CMD=( ./mvnw ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION} )
-
 
 isLog4j2NotSupportedByJdk() {
     local java_version=$("${JAVA_CMD[@]}" -version 2>&1 | awk '-F"' 'NR==1{print $2}')
@@ -102,20 +105,20 @@ isLog4j2NotSupportedByJdk() {
 #################################################################################
 
 mvnClean() {
-    runCmd ./mvnw clean || fatal "fail to mvn clean!"
+    runCmd ./mvnw clean || die "fail to mvn clean!"
 }
 
 mvnBuildJar() {
     # ! build jar do not modify the pom(log4j2 verion) by ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION}
-    runCmd ./mvnw install -Dmaven.test.skip || fatal "fail to build jar!"
+    runCmd ./mvnw install -Dmaven.test.skip || die "fail to build jar!"
 }
 
 mvnCompileTest() {
-    runCmd ./mvnw test-compile || fatal "fail to mvn test-compile!"
+    runCmd ./mvnw test-compile || die "fail to mvn test-compile!"
 }
 
 mvnCopyDependencies() {
-    runCmd "${MVN_CMD[@]}" dependency:copy-dependencies -DincludeScope=test || fatal "fail to mvn copy-dependencies!"
+    runCmd "${MVN_CMD[@]}" dependency:copy-dependencies -DincludeScope=test || die "fail to mvn copy-dependencies!"
 }
 
 getClasspathOfDependencies() {
