@@ -84,8 +84,12 @@ adjustPwdToProjectRootDir
 readonly version=`grep '<version>.*</version>' pom.xml | awk -F'</?version>' 'NR==1{print $2}'`
 readonly aid=`grep '<artifactId>.*</artifactId>' pom.xml | awk -F'</?artifactId>' 'NR==1{print $2}'`
 
-readonly -a JAVA_CMD=( "$JAVA_HOME/bin/java" -Xmx128m -Xms128m -ea -Duser.language=en -Duser.country=US )
-readonly -a JAVA_DEBUG_OPTS=( -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 )
+readonly -a JAVA_CMD=(
+    "$JAVA_HOME/bin/java" -Xmx128m -Xms128m -ea -Duser.language=en -Duser.country=US
+    ${ENABLE_JAVA_RUN_DEBUG+
+        -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
+    }
+)
 
 readonly -a MVN_CMD=( ./mvnw ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION} )
 
