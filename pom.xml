@@ -4,7 +4,7 @@
 
 	<groupId>com.alibaba</groupId>
 	<artifactId>log4j2-ttl-thread-context-map</artifactId>
-	<version>1.3.0-SNAPSHOT</version>
+	<version>1.3.0</version>
 	<packaging>jar</packaging>
 	<name>TTL Thread Context Map for Log4j2</name>
 	<description>TTL Thread Context Map for Log4j2</description>
