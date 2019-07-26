@@ -9,6 +9,8 @@ source ./common.sh skipClean
 #   - JAVA7_HOME
 #   - JAVA9_HOME
 #   - JAVA10_HOME
+#   - JAVA11_HOME
+#   - JAVA12_HOME
 
 # Java 8
 if [ -n "$JAVA8_HOME" ]; then
@@ -68,4 +70,13 @@ if [ -n "$JAVA11_HOME" ]; then
     runCmd ./scripts/run-junit.sh skipClean
 else
     headInfo "skip Java 11 test"
+fi
+
+# Java 12
+if [ -n "$JAVA12_HOME" ]; then
+    headInfo "test with Java 12"
+    export JAVA_HOME="${JAVA12_HOME}"
+    runCmd ./scripts/run-junit.sh skipClean
+else
+    headInfo "skip Java 12 test"
 fi
