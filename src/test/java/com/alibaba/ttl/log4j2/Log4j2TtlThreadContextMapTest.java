@@ -4,11 +4,8 @@ import com.alibaba.ttl.TtlRunnable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.ThreadContext;
-import org.junit.AfterClass;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -17,53 +14,21 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author Jerry Lee (oldratlee at gmail dot com)
  */
-public class Log4j2TtlThreadContextMapTest {
-    private static final long START_TIME_STAMP = System.currentTimeMillis();
-
-    private static final PrintStream stdOut = System.out;
-
-    private static final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-
-    // MUST hijack/set stdout before load logger instance(with stdout)!
-    static {
-        PrintStream printStream = new PrintStream(byteArrayOutputStream);
-        System.setOut(printStream);
-    }
-
-    // then load logger instance
-    private static Logger logger = LogManager.getLogger(Log4j2TtlThreadContextMapTest.class);
-
-    @AfterClass
-    public static void afterClass() {
-        System.setOut(stdOut);
-    }
-
-    private static String getOutAndClear() {
-        System.out.flush();
-
-        final byte[] bytes = byteArrayOutputStream.toByteArray();
-        final String out = new String(bytes);
-        byteArrayOutputStream.reset();
-
-        stdOut.print(out);
-
-        final int idx = out.indexOf('\n');
-        return out.substring(idx + 1, out.length() - 1); // trim first line and last '\n'
-    }
+public class Log4j2TtlThreadContextMapTest extends AbstractTest4StdOut {
 
     @Test
     public void test_log4j2_ThreadContext() throws Exception {
+        final Logger logger = LogManager.getLogger(Log4j2TtlThreadContextMapTest.class);
+
         // Log in Main Thread
         logger.info("Log in main!");
-        assertEquals("[] {} - Log in main!",
-                getOutAndClear());
+        assertEquals("[] {} - Log in main!", getLogAndClear());
 
         final ExecutorService executorService = Executors.newFixedThreadPool(2);
 
         // Run task in thread pool
-        executorService.submit(createTask()).get();
-        assertEquals("[] {task=" + START_TIME_STAMP + "} - Log in Runnable!",
-                getOutAndClear());
+        executorService.submit(createTask(logger)).get();
+        assertEquals("[] {task=" + START_TIME_STAMP + "} - Log in Runnable!", getLogAndClear());
 
         // Init Log Context, set TTL
         // More KV if needed
@@ -73,20 +38,18 @@ public class Log4j2TtlThreadContextMapTest {
 
         // Log in Main Thread
         logger.info("Log in main!");
-        assertEquals("[XXX-YYY-ZZZ] {trace-id=XXX-YYY-ZZZ} - Log in main!",
-                getOutAndClear());
+        assertEquals("[XXX-YYY-ZZZ] {trace-id=XXX-YYY-ZZZ} - Log in main!", getLogAndClear());
 
-        executorService.submit(createTask()).get();
-        assertEquals("[XXX-YYY-ZZZ] {task=" + START_TIME_STAMP + ", trace-id=XXX-YYY-ZZZ} - Log in Runnable!", getOutAndClear());
+        executorService.submit(createTask(logger)).get();
+        assertEquals("[XXX-YYY-ZZZ] {task=" + START_TIME_STAMP + ", trace-id=XXX-YYY-ZZZ} - Log in Runnable!", getLogAndClear());
 
         logger.info("Exit main");
-        assertEquals("[XXX-YYY-ZZZ] {trace-id=XXX-YYY-ZZZ} - Exit main",
-                getOutAndClear());
+        assertEquals("[XXX-YYY-ZZZ] {trace-id=XXX-YYY-ZZZ} - Exit main", getLogAndClear());
 
         executorService.shutdown();
     }
 
-    private static Runnable createTask() {
+    private static Runnable createTask(final Logger logger) {
         final Runnable task = new Runnable() {
             @Override
             public void run() {
