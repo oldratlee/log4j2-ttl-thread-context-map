@@ -85,6 +85,9 @@ script:
   #  open jdk 12
   - switch_to_open_jdk12
   - ./scripts/run-junit.sh skipClean
+  #  open jdk 13
+  - switch_to_open_jdk13
+  - ./scripts/run-junit.sh skipClean
   # codecov
   - jdk_switcher use oraclejdk8
   - mvn clean

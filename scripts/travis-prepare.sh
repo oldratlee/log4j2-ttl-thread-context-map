@@ -41,3 +41,10 @@ switch_to_open_jdk12() {
         "$install_jdk_bin" --feature 12 --license GPL --target "$JAVA_HOME"
     fi
 }
+
+switch_to_open_jdk13() {
+    export JAVA_HOME=$HOME/.jdk/openjdk13
+    if [ ! -d "$JAVA_HOME" ]; then
+        "$install_jdk_bin" --feature 13 --license GPL --target "$JAVA_HOME"
+    fi
+}
