@@ -83,6 +83,7 @@ adjustPwdToProjectRootDir
 
 readonly version=`grep '<version>.*</version>' pom.xml | awk -F'</?version>' 'NR==1{print $2}'`
 readonly aid=`grep '<artifactId>.*</artifactId>' pom.xml | awk -F'</?artifactId>' 'NR==1{print $2}'`
+readonly log4j2_version_in_pom="$(awk -F'</?log4j2.version>' '/<log4j2.version>/{print $2}' pom.xml)"
 
 readonly -a JAVA_CMD=(
     "$JAVA_HOME/bin/java" -Xmx128m -Xms128m -ea -Duser.language=en -Duser.country=US
@@ -95,7 +96,7 @@ readonly -a MVN_CMD=( ./mvnw ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION}
 
 isLog4j2NotSupportedByJdk() {
     local java_version=$("${JAVA_CMD[@]}" -version 2>&1 | awk '-F"' 'NR==1{print $2}')
-    local log4j2_minor_version="$(echo "${LOG4J2_VERSION:-2.11.0}" | awk -F'[.]' '{print $2}')"
+    local log4j2_minor_version="$(echo "${LOG4J2_VERSION:-"$log4j2_version_in_pom"}" | awk -F'[.]' '{print $2}')"
 
     # log4j2 Changelog
     # https://logging.apache.org/log4j/2.x/changelog.html
