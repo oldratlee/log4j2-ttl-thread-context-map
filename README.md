@@ -52,7 +52,7 @@ Run Demo Code
 ```xml
 <!--
     log4j2 runtime extension is SPI implementation,
-    it will never be used by biz code, so set scope to runtime. 
+    it will never be used by biz code, so set scope to runtime.
 -->
 <dependency>
     <groupId>com.alibaba</groupId>

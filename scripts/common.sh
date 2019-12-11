@@ -157,8 +157,7 @@ getClasspath() {
 # maven actions
 #################################################################################
 
-runCmd "${MVN_CMD[@]}" --version
-
-if [ "$1" != "skipClean" ]; then 
+if [ "$1" != "skipClean" ]; then
+    runCmd "${MVN_CMD[@]}" --version
     mvnClean
 fi
