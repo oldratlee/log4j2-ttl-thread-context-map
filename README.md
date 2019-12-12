@@ -25,9 +25,9 @@
 
 # 🔧 Functions
 
-👉 Enable the transmitting `Log4j2` `ThreadContext`(`ThreadLocal` value) between threads even using thread pool like components by [Transmittable ThreadLocal(`TTL`)](https://github.com/alibaba/transmittable-thread-local).
+👉 Enable the transmitting `Log4j2` `ThreadContext`(`ThreadLocal` value) between threads even using thread pooling components by [Transmittable ThreadLocal(`TTL`)](https://github.com/alibaba/transmittable-thread-local).
 
-Tested and support all `log4j2` version(`2.0` ~ `2.12`) and `java` version 6 ~ 12.
+Tested and support all `log4j2` version(`2.0` ~ `2.12`) and `java` version 6 ~ 13.
 
 # 👥 Usage
 
@@ -51,13 +51,14 @@ Run Demo Code
 
 ```xml
 <!--
-    log4j2 runtime extension is SPI implementation,
-    it will never be used by biz code, so set scope to runtime.
+    because this dependency is implemented by log4j2 runtime extension
+    that will never be used by biz code,
+    set scope to *runtime*.
 -->
 <dependency>
     <groupId>com.alibaba</groupId>
     <artifactId>log4j2-ttl-thread-context-map</artifactId>
-    <version>1.3.0</version>
+    <version>1.3.1</version>
     <scope>runtime</scope>
 </dependency>
 ```
@@ -70,4 +71,4 @@ Find available versions at [search.maven.org](http://search.maven.org/#search%7C
     - [log4j 2 Thread Context](https://logging.apache.org/log4j/2.x/manual/thread-context.html)
     - [Changelog](https://logging.apache.org/log4j/2.x/changelog.html)
 - [Mapped Diagnostic Context (MDC) support - slf4j official documentation](https://www.slf4j.org/manual.html#mdc)
-- [Transmittable ThreadLocal(TTL)](https://github.com/alibaba/transmittable-thread-local), 📌 The missing std Java™ lib(simple & 0-dependency) for framework/middleware, transmitting ThreadLocal value between threads even using thread pool like components.
+- [Transmittable ThreadLocal(TTL)](https://github.com/alibaba/transmittable-thread-local), 📌 The missing Java™ std lib(simple & 0-dependency) for framework/middleware, provide an enhanced InheritableThreadLocal that transmits ThreadLocal value between threads even using thread pooling components.
