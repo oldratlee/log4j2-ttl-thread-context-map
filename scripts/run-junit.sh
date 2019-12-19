@@ -15,7 +15,7 @@ junit_test_cases() {
 }
 
 if isLog4j2NotSupportedByJdk; then
-    yellowEcho "skip run junit: log4j2 $LOG4J2_VERSION not support java 6"
+    yellowEcho "skip run junit: log4j2 $LOG4J2_VERSION not support java $JAVA_VERSION"
     exit
 fi
 

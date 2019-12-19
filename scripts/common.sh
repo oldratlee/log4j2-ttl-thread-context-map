@@ -91,18 +91,26 @@ readonly -a JAVA_CMD=(
         -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
     }
 )
+readonly JAVA_VERSION=$("${JAVA_CMD[@]}" -version 2>&1 | awk '-F"' 'NR==1{print $2}')
 
 readonly -a MVN_CMD=( ./mvnw ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION} )
 
 isLog4j2NotSupportedByJdk() {
-    local java_version=$("${JAVA_CMD[@]}" -version 2>&1 | awk '-F"' 'NR==1{print $2}')
     local log4j2_minor_version="$(echo "${LOG4J2_VERSION:-"$log4j2_version_in_pom"}" | awk -F'[.]' '{print $2}')"
 
     # log4j2 Changelog
     # https://logging.apache.org/log4j/2.x/changelog.html
+    #   Log4j 2.13 and greater requires Java 8
     #   Log4j 2.4 and greater requires Java 7
     #   versions 2.0-alpha1 to 2.3 required Java 6.
-    [[ "$java_version" == 1.6.* ]] && (( log4j2_minor_version >= 4 ))
+
+    if (( log4j2_minor_version >= 13 )) && [[ "$JAVA_VERSION" == 1.6.* || "$JAVA_VERSION" == 1.7.* ]]; then
+        return 0 # true
+    elif (( log4j2_minor_version >= 4 )) && [[ "$JAVA_VERSION" == 1.6.* ]] ; then
+        return 0 # true
+    else
+      return 1 # false
+    fi
 }
 
 #################################################################################
