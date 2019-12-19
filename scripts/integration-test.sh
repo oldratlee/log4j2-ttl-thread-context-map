@@ -24,7 +24,7 @@ else
 fi
 
 headInfo "test with Java 8"
-runCmd ./mvnw clean install --batch-mode
+runCmd "${MVN_CMD[@]}" clean install --batch-mode
 runCmd ./scripts/run-junit.sh
 
 # Java 6

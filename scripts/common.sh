@@ -110,16 +110,16 @@ isLog4j2NotSupportedByJdk() {
 #################################################################################
 
 mvnClean() {
-    runCmd ./mvnw clean || die "fail to mvn clean!"
+    runCmd "${MVN_CMD[@]}" clean || die "fail to mvn clean!"
 }
 
 mvnBuildJar() {
     # ! build jar do not modify the pom(log4j2 verion) by ${LOG4J2_VERSION:+-Dlog4j2.version=$LOG4J2_VERSION}
-    runCmd ./mvnw install -Dmaven.test.skip || die "fail to build jar!"
+    runCmd "${MVN_CMD[@]}" install -Dmaven.test.skip || die "fail to build jar!"
 }
 
 mvnCompileTest() {
-    runCmd ./mvnw test-compile || die "fail to mvn test-compile!"
+    runCmd "${MVN_CMD[@]}" test-compile || die "fail to mvn test-compile!"
 }
 
 mvnCopyDependencies() {
