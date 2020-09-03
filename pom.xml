@@ -247,10 +247,44 @@
 					<artifactId>jacoco-maven-plugin</artifactId>
 					<version>0.8.5</version>
 				</plugin>
+				<plugin>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>3.1.2</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
 	<profiles>
+		<profile>
+			<id>enable-ttl-agent-for-test</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<argLine>-javaagent:${com.alibaba:transmittable-thread-local:jar}=ttl.agent.logger:STDOUT</argLine>
+						</configuration>
+					</plugin>
+					<plugin>
+						<!--
+							How to get path to dependency jar with maven
+							https://stackoverflow.com/a/56396097/922688
+							Apache Maven Dependency Plugin – Introduction
+							https://maven.apache.org/plugins/maven-dependency-plugin/
+						-->
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>initialize</phase>
+								<goals>
+									<goal>properties</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 		<profile>
 			<id>srcDoc</id>
 			<activation>
