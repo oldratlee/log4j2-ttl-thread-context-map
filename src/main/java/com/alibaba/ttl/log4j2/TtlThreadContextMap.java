@@ -95,10 +95,10 @@ public class TtlThreadContextMap implements ThreadContextMap {
         if (obj == null) {
             return false;
         }
-        if (!(obj instanceof ThreadContextMap)) {
+        if (!(obj instanceof TtlThreadContextMap)) {
             return false;
         }
-        final ThreadContextMap other = (ThreadContextMap) obj;
+        final TtlThreadContextMap other = (TtlThreadContextMap) obj;
         final Map<String, String> map = this.localMap.get();
         final Map<String, String> otherMap = other.getImmutableMapOrNull();
         if (map == null) {
