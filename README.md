@@ -27,7 +27,7 @@
 
 👉 Enable the transmitting `Log4j2` `ThreadContext`(`ThreadLocal` value) between threads even using thread pooling components by [Transmittable ThreadLocal(`TTL`)](https://github.com/alibaba/transmittable-thread-local).
 
-Tested and support all `log4j2` version(`2.0` ~ `2.13`) and `java` version 6 ~ 13.
+Tested and support all `log4j2` version(`2.0` ~ `2.14`) and `java` version 6 ~ 13.
 
 # 👥 Usage
 
