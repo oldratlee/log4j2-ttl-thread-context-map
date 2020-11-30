@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout>
+				<Pattern>%d %-5p %c{1.} [%t] %m%n</Pattern>
+			</PatternLayout>
+		</Console>
+	</Appenders>
+
+	<Filters>
+		<DynamicThresholdFilter key="online-debug" defaultThreshold="INFO" onMatch="ACCEPT" onMismatch="NEUTRAL">
+			<KeyValuePair key="true" value="DEBUG"/>
+		</DynamicThresholdFilter>
+	</Filters>
+
+	<Loggers>
+		<Root level="info">
+			<AppenderRef ref="console"/>
+		</Root>
+	</Loggers>
+</Configuration>
