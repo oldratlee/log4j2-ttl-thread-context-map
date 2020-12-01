@@ -262,7 +262,7 @@
 					<plugin>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
-							<argLine>-javaagent:${com.alibaba:transmittable-thread-local:jar}=ttl.agent.logger:STDOUT</argLine>
+							<argLine>-javaagent:${com.alibaba:transmittable-thread-local:jar}</argLine>
 						</configuration>
 					</plugin>
 					<plugin>
