@@ -1,11 +1,14 @@
 # 🌳 Log4j2 TTL ThreadContextMap 🌳
 
-[![Build Status](https://travis-ci.org/oldratlee/log4j2-ttl-thread-context-map.svg?branch=master)](https://travis-ci.org/oldratlee/log4j2-ttl-thread-context-map)
-[![Coverage Status](https://img.shields.io/codecov/c/github/oldratlee/log4j2-ttl-thread-context-map/master.svg)](https://codecov.io/gh/oldratlee/log4j2-ttl-thread-context-map/branch/master)
-[![Maven Central](https://img.shields.io/maven-central/v/com.alibaba/log4j2-ttl-thread-context-map.svg)](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.alibaba%22%20AND%20a%3A%22log4j2-ttl-thread-context-map%22)
-[![GitHub release](https://img.shields.io/github/release/oldratlee/log4j2-ttl-thread-context-map.svg)](https://github.com/oldratlee/log4j2-ttl-thread-context-map/releases)
-[![GitHub issues](https://img.shields.io/github/issues/oldratlee/log4j2-ttl-thread-context-map.svg)](https://github.com/oldratlee/log4j2-ttl-thread-context-map/issues)
+[![Build Status](https://img.shields.io/travis/com/oldratlee/log4j2-ttl-thread-context-map/master?logo=travis-ci&logoColor=white)](https://travis-ci.com/github/oldratlee/log4j2-ttl-thread-context-map)
+[![Coverage Status](https://img.shields.io/codecov/c/github/oldratlee/log4j2-ttl-thread-context-map/master.svg?logo=codecov&logoColor=white)](https://codecov.io/gh/oldratlee/log4j2-ttl-thread-context-map/branch/master)
+[![Maven Central](https://img.shields.io/maven-central/v/com.alibaba/log4j2-ttl-thread-context-map.svg?color=2d545e&logo=apache-maven&logoColor=white)](https://search.maven.org/artifact/com.alibaba/log4j2-ttl-thread-context-map)
+[![GitHub release](https://img.shields.io/github/release/oldratlee/log4j2-ttl-thread-context-map.svg)](https://github.com/oldratlee/log4j2-ttl-thread-context-map/releases)  
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![GitHub Stars](https://img.shields.io/github/stars/oldratlee/log4j2-ttl-thread-context-map)](https://github.com/oldratlee/log4j2-ttl-thread-context-map/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/oldratlee/log4j2-ttl-thread-context-map)](https://github.com/oldratlee/log4j2-ttl-thread-context-map/fork)
+[![GitHub repo dependents](https://badgen.net/github/dependents-repo/oldratlee/log4j2-ttl-thread-context-map)](https://github.com/oldratlee/log4j2-ttl-thread-context-map/network/dependents)
+[![GitHub issues](https://img.shields.io/github/issues/oldratlee/log4j2-ttl-thread-context-map.svg)](https://github.com/oldratlee/log4j2-ttl-thread-context-map/issues)
 
 --------------------------
 
