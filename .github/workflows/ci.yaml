@@ -21,5 +21,4 @@ jobs:
           java-version: ${{ matrix.java }}
           distribution: 'zulu'
           cache: 'maven'
-      - name: Build with Maven
-        run: ./mvnw -V --no-transfer-progress clean package
+      - run: scripts/integration_test
