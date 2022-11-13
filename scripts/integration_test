@@ -19,8 +19,15 @@ color_echo() {
   [ -t 1 ] && echo "${ec}[1;${color}m$*${eend}" || echo "$*"
 }
 
+die() {
+  (($# > 0)) || die "${FUNCNAME[0]} requires arguments! But no provided"
+
+  color_echo "1;31" "Error: $*" >&2
+  exit 1
+}
+
 log_then_run() {
-  (($# > 0)) || cu::die "${FUNCNAME[0]} requires arguments! But no provided"
+  (($# > 0)) || die "${FUNCNAME[0]} requires arguments! But no provided"
 
   color_echo "1;36" "Run under work directory $PWD :" >&2
   color_echo "1;36" "$*" >&2
