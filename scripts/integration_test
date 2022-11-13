@@ -55,7 +55,9 @@ CURRENT_LOG4J2_MINOR_VERSION=$(
 )
 readonly CURRENT_LOG4J2_MINOR_VERSION
 
-for ((minor_version = CURRENT_LOG4J2_MINOR_VERSION - 6; minor_version < CURRENT_LOG4J2_MINOR_VERSION; minor_version++)); do
+readonly PREVIOUS_LOG4J2_VERSIONS_TEST_COUNT=5
+
+for ((minor_version = CURRENT_LOG4J2_MINOR_VERSION - PREVIOUS_LOG4J2_VERSIONS_TEST_COUNT; minor_version < CURRENT_LOG4J2_MINOR_VERSION; minor_version++)); do
   log4j2_version="2.$minor_version.0"
 
   run_mvn surefire:test -Dlog4j2.version=$log4j2_version
