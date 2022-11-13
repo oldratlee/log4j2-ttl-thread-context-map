@@ -67,7 +67,7 @@ Run Demo Code
 <dependency>
     <groupId>com.alibaba</groupId>
     <artifactId>log4j2-ttl-thread-context-map</artifactId>
-    <version>1.3.3</version>
+    <version>1.4.0</version>
     <scope>runtime</scope>
 </dependency>
 ```
