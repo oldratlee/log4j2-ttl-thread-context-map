@@ -35,7 +35,7 @@ log_then_run() {
 }
 
 run_mvn() {
-  log_then_run ./mvnw -V --no-transfer-progress "$@"
+  log_then_run ./mvnw -V --no-transfer-progress dependency:tree "$@"
 }
 
 ########################################
