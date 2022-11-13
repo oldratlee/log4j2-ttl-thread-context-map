@@ -1,8 +1,8 @@
 # <div align="center">🌳 Log4j2 TTL ThreadContextMap</div>
 
 <p align="center">
-<a href="https://github.com/oldratlee/log4j2-ttl-thread-context-map/actions/workflows/ci.yaml"><img src="https://img.shields.io/github/workflow/status/oldratlee/log4j2-ttl-thread-context-map/CI/master?logo=github&logoColor=white" alt="Github Workflow Build Status"></a>
-<a href="https://codecov.io/gh/oldratlee/log4j2-ttl-thread-context-map/branch/master"><img src="https://img.shields.io/codecov/c/github/oldratlee/log4j2-ttl-thread-context-map/master?logo=codecov&logoColor=white" alt="Coverage Status"></a>
+<a href="https://github.com/oldratlee/log4j2-ttl-thread-context-map/actions/workflows/ci.yaml"><img src="https://img.shields.io/github/workflow/status/oldratlee/log4j2-ttl-thread-context-map/CI/v1.4.0?logo=github&logoColor=white" alt="Github Workflow Build Status"></a>
+<a href="https://codecov.io/gh/oldratlee/log4j2-ttl-thread-context-map/branch/v1.4.0"><img src="https://img.shields.io/codecov/c/github/oldratlee/log4j2-ttl-thread-context-map/v1.4.0?logo=codecov&logoColor=white" alt="Coverage Status"></a>
 <a href="https://openjdk.java.net/"><img src="https://img.shields.io/badge/Java-6+-green?logo=openjdk&logoColor=white" alt="JDK support"></a>
 <a href="https://www.apache.org/licenses/LICENSE-2.0.html"><img src="https://img.shields.io/github/license/oldratlee/log4j2-ttl-thread-context-map?color=4D7A97&logo=apache" alt="License"></a>
 <a href="https://search.maven.org/artifact/com.alibaba/log4j2-ttl-thread-context-map"><img src="https://img.shields.io/maven-central/v/com.alibaba/log4j2-ttl-thread-context-map?color=2d545e&logo=apache-maven&logoColor=white" alt="Maven Central"></a>
@@ -67,7 +67,7 @@ Run Demo Code
 <dependency>
     <groupId>com.alibaba</groupId>
     <artifactId>log4j2-ttl-thread-context-map</artifactId>
-    <version>1.3.3</version>
+    <version>1.4.0</version>
     <scope>runtime</scope>
 </dependency>
 ```
