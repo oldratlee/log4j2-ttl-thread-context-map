@@ -14,7 +14,7 @@
 	<licenses>
 		<license>
 			<name>Apache 2</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
 			<distribution>repo</distribution>
 			<comments>A business-friendly OSS license</comments>
 		</license>
@@ -30,7 +30,7 @@
 	</issueManagement>
 	<organization>
 		<name>Alibaba</name>
-		<url>http://www.alibaba.com</url>
+		<url>https://www.alibaba.com</url>
 	</organization>
 	<developers>
 		<developer>
@@ -43,7 +43,7 @@
 				<role>developer</role>
 			</roles>
 			<organization>Alibaba</organization>
-			<organizationUrl>http://www.alibaba.com</organizationUrl>
+			<organizationUrl>https://www.alibaba.com</organizationUrl>
 		</developer>
 	</developers>
 
@@ -120,7 +120,7 @@
 				<configuration>
 					<!--
 						terminate the spawned process after one test class and to create a new process for the next test in line (reuseForks=false)
-						http://maven.apache.org/surefire-archives/maven-surefire-2.16/maven-surefire-plugin/examples/fork-options-and-parallel-execution.html
+						https://maven.apache.org/surefire-archives/maven-surefire-2.16/maven-surefire-plugin/examples/fork-options-and-parallel-execution.html
 					-->
 					<reuseForks>false</reuseForks>
 				</configuration>
@@ -308,7 +308,7 @@
 							<encoding>UTF-8</encoding>
 							<docencoding>UTF-8</docencoding>
 							<links>
-								<link>http://docs.oracle.com/javase/7/docs/api</link>
+								<link>https://docs.oracle.com/javase/7/docs/api</link>
 							</links>
 							<additionalJOptions>
 								<additionalJOption>-J-Duser.language=en -J-Duser.country=US</additionalJOption>
