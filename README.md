@@ -72,7 +72,7 @@ Run Demo Code
 </dependency>
 ```
 
-Find available versions at [search.maven.org](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.alibaba%22%20AND%20a%3A%22log4j2-ttl-thread-context-map%22).
+Find up-to-date available versions at [search.maven.org](https://search.maven.org/artifact/com.alibaba/log4j2-ttl-thread-context-map).
 
 # 📚 Related resources
 
