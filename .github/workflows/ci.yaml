@@ -21,5 +21,10 @@ jobs:
           java-version: ${{ matrix.java }}
           distribution: 'zulu'
           cache: 'maven'
-      - name: Build with Maven
-        run: ./mvnw -V --no-transfer-progress clean package
+      - run: scripts/integration_test
+      # https://github.com/marketplace/actions/codecov
+      - run: ./mvnw -V --no-transfer-progress -P gen-code-cov clean package
+      - uses: codecov/codecov-action@v3
+        with:
+          name: codecov-umbrella
+          token: ${{ secrets.CODECOV_TOKEN }}

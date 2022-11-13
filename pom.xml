@@ -402,19 +402,13 @@
 			</build>
 		</profile>
 		<profile>
-			<id>travis</id>
-			<activation>
-				<property>
-					<name>env.TRAVIS</name>
-					<value>true</value>
-				</property>
-			</activation>
+			<id>gen-code-cov</id>
 			<build>
 				<plugins>
 					<plugin>
 						<!-- for codecov.io -->
 						<!-- config example: https://github.com/codecov/example-java -->
-						<!-- plugin docs: http://eclemma.org/jacoco/trunk/doc/ -->
+						<!-- plugin docs: https://eclemma.org/jacoco/trunk/doc/ -->
 						<groupId>org.jacoco</groupId>
 						<artifactId>jacoco-maven-plugin</artifactId>
 						<executions>

@@ -1,0 +1,56 @@
+#!/bin/bash
+#!/bin/bash
+set -eEuo pipefail
+cd "$(dirname "$(readlink -f "$0")")"/..
+
+########################################
+# util functions
+########################################
+
+color_echo() {
+  local color=$1
+  shift
+
+  # NOTE: $'foo' is the escape sequence syntax of bash
+  local -r ec=$'\033'      # escape char
+  local -r eend=$'\033[0m' # escape end
+
+  # if stdout is the console, turn on color output.
+  [ -t 1 ] && echo "${ec}[1;${color}m$*${eend}" || echo "$*"
+}
+
+log_then_run() {
+  (($# > 0)) || cu::die "${FUNCNAME[0]} requires arguments! But no provided"
+
+  color_echo "1;36" "Run under work directory $PWD :" >&2
+  color_echo "1;36" "$*" >&2
+  "$@"
+}
+
+run_mvn() {
+  log_then_run ./mvnw -V --no-transfer-progress "$@"
+}
+
+########################################
+# build with default log4j2 version
+########################################
+
+run_mvn clean package
+run_mvn package -P enable-ttl-agent-for-test
+
+########################################
+# build with previous log4j2 versions
+########################################
+
+CURRENT_LOG4J2_MINOR_VERSION=$(
+  awk -F'</?log4j2\\.version>' '/<log4j2\.version>.*<\/log4j2\.version>/{print $2}' pom.xml |
+    awk -F'\\.' '{print $2}'
+)
+readonly CURRENT_LOG4J2_MINOR_VERSION
+
+for ((minor_version = CURRENT_LOG4J2_MINOR_VERSION - 6; minor_version < CURRENT_LOG4J2_MINOR_VERSION; minor_version++)); do
+  log4j2_version="2.$minor_version.0"
+
+  run_mvn surefire:test -Dlog4j2.version=$log4j2_version
+  run_mvn dependency:properties surefire:test -P enable-ttl-agent-for-test -Dlog4j2.version=$log4j2_version
+done
