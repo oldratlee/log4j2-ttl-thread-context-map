@@ -15,8 +15,8 @@ jobs:
     name: CI JDK ${{ matrix.java }}
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v5
         with:
           java-version: ${{ matrix.java }}
           distribution: zulu
@@ -24,7 +24,11 @@ jobs:
       - run: scripts/integration_test
       # https://github.com/marketplace/actions/codecov
       - run: ./mvnw -V --no-transfer-progress -P gen-code-cov clean package
-      - uses: codecov/codecov-action@v3
-        with:
-          name: codecov-umbrella
-          token: ${{ secrets.CODECOV_TOKEN }}
+      - uses: codecov/codecov-action@v5
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      # https://remarkablemark.org/blog/2017/10/12/check-git-dirty/
+      - name: Check git dirty
+        run: |
+          git status --short
+          [ -z "$(git status --short)" ]
