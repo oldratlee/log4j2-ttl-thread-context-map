@@ -38,13 +38,10 @@ public class Slf4jMdcDemo {
     }
 
     private static Runnable createTask() {
-        final Runnable task = new Runnable() {
-            @Override
-            public void run() {
-                // Log in thread pool
-                MDC.put("task", new Date().toString());
-                logger.info("Log in Runnable!");
-            }
+        final Runnable task = () -> {
+            // Log in thread pool
+            MDC.put("task", new Date().toString());
+            logger.info("Log in Runnable!");
         };
         return TtlRunnable.get(task);
     }
