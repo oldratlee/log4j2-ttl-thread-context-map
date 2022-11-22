@@ -46,13 +46,10 @@ public class Slf4jMdcTest extends AbstractTest4StdOut {
     }
 
     private static Runnable createTask(final Logger logger) {
-        final Runnable task = new Runnable() {
-            @Override
-            public void run() {
-                // Log in thread pool
-                MDC.put("task", "" + START_TIME_STAMP);
-                logger.info("Log in Runnable!");
-            }
+        final Runnable task = () -> {
+            // Log in thread pool
+            MDC.put("task", "" + START_TIME_STAMP);
+            logger.info("Log in Runnable!");
         };
         return TtlRunnable.get(task);
     }
