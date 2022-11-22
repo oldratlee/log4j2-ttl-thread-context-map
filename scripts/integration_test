@@ -38,16 +38,16 @@ run_mvn() {
   log_then_run ./mvnw -V --no-transfer-progress dependency:tree "$@"
 }
 
-########################################
-# build with default log4j2 version
-########################################
+#############################################
+# build with default dependency versions
+#############################################
 
 run_mvn clean package
 run_mvn package -P enable-ttl-agent-for-test
 
-########################################
+#############################################
 # build with previous log4j2 versions
-########################################
+#############################################
 
 CURRENT_LOG4J2_MINOR_VERSION=$(
   awk -F'</?log4j2\\.version>' '/<log4j2\.version>.*<\/log4j2\.version>/{print $2}' pom.xml |
@@ -63,3 +63,10 @@ for ((minor_version = CURRENT_LOG4J2_MINOR_VERSION - PREVIOUS_LOG4J2_VERSIONS_TE
   run_mvn surefire:test -Dlog4j2.version=$log4j2_version
   run_mvn dependency:properties surefire:test -P enable-ttl-agent-for-test -Dlog4j2.version=$log4j2_version
 done
+
+#############################################
+# build with slf4j v2.x
+#############################################
+
+run_mvn surefire:test -P enable-slf4j-2.x
+run_mvn dependency:properties surefire:test -P enable-ttl-agent-for-test -P enable-slf4j-2.x
