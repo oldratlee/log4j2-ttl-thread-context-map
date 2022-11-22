@@ -53,6 +53,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<log4j2.version>2.19.0</log4j2.version>
+		<log4j2.slf4j.impl.aid>log4j-slf4j-impl</log4j2.slf4j.impl.aid>
 		<slf4j.version>1.7.36</slf4j.version>
 	</properties>
 
@@ -89,7 +90,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-slf4j-impl</artifactId>
+			<artifactId>${log4j2.slf4j.impl.aid}</artifactId>
 			<version>${log4j2.version}</version>
 			<scope>test</scope>
 		</dependency>
@@ -240,6 +241,13 @@
 		</pluginManagement>
 	</build>
 	<profiles>
+		<profile>
+			<id>enable-slf4j-2.x</id>
+			<properties>
+				<log4j2.slf4j.impl.aid>log4j-slf4j2-impl</log4j2.slf4j.impl.aid>
+				<slf4j.version>2.0.4</slf4j.version>
+			</properties>
+		</profile>
 		<profile>
 			<id>enable-ttl-agent-for-test</id>
 			<build>
