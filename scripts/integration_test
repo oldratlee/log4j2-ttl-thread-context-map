@@ -11,12 +11,12 @@ color_echo() {
   local color=$1
   shift
 
-  # NOTE: $'foo' is the escape sequence syntax of bash
-  local -r ec=$'\033'      # escape char
-  local -r eend=$'\033[0m' # escape end
-
-  # if stdout is the console, turn on color output.
-  [ -t 1 ] && echo "${ec}[1;${color}m$*${eend}" || echo "$*"
+  # if stdout is the terminal, turn on color output.
+  if [[ -t 1 || "${GITHUB_ACTIONS:-}" = true ]]; then
+    printf "\e[1;%sm%s\e[0m\n" "$color" "$*"
+  else
+    echo "$*"
+  fi
 }
 
 die() {
