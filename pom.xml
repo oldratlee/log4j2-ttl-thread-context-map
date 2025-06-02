@@ -58,7 +58,7 @@
 
 		<log4j2.version>2.24.3</log4j2.version>
 		<log4j2.slf4j.impl.aid>log4j-slf4j-impl</log4j2.slf4j.impl.aid>
-		<slf4j.version>1.7.36</slf4j.version>
+		<slf4j.version>2.0.0</slf4j.version>
 	</properties>
 
 	<dependencies>
